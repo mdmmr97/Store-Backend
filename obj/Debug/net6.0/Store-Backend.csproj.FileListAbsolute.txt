@@ -30,3 +30,14 @@ C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\obj\Debug\net6.0
 C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\obj\Debug\net6.0\Store-Backend.pdb
 C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\obj\Debug\net6.0\Store-Backend.genruntimeconfig.cache
 C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\obj\Debug\net6.0\ref\Store-Backend.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
