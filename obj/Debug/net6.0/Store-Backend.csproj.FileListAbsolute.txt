@@ -41,3 +41,5 @@ C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0
 C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Usuario\Dropbox\DAMP\PRACTICAS\.NET CORE\Store-Backend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

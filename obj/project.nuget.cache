@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "apAich/6EJPeTn/KeHs7yS7nfON9c78j3DPqt0nhyJ9/Lyy0XtY6ABzGbfcZ5BKeWGZEzWrFoLcImHOGiM5b9g==",
+  "dgSpecHash": "pkDFryLM7MKBDJzXgMigPe1yIXYvGoVDVeDeAlyxGgRf3Q35hZ9n/37rkGKT2HTYJZpivkrSpAzhM4T1HvC20A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuario\\Dropbox\\DAMP\\PRACTICAS\\.NET CORE\\Store-Backend\\Store-Backend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.5\\microsoft.entityframeworkcore.7.0.5.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.5\\microsoft.entityframeworkcore.abstractions.7.0.5.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.5\\microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512",

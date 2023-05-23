@@ -1,7 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using Store_Backend.Application.Mappings;
+using Store_Backend.Application.Services;
+using Store_Backend.Domain.Persistence;
 using Store_Backend.Infraestructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddAutoMapper(typeof(CategoryMapperProfile));
 
 // Add services to the container.
 
