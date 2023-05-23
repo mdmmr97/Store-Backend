@@ -2,12 +2,7 @@
 
 namespace Store_Backend.Domain.Persistence
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository: IGenericRepository<Category>
     {
-        List<Category> GetAll();
-        object GetById(long id);
-        Category Insert(Category category);
-        Category Update(Category category);
-        void Delete(long id);
     }
 }
