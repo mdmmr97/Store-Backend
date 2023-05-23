@@ -6,8 +6,11 @@ using Store_Backend.Infraestructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddAutoMapper(typeof(CategoryMapperProfile));
+builder.Services.AddAutoMapper(typeof(ItemMapperProfile));
 
 // Add services to the container.
 
