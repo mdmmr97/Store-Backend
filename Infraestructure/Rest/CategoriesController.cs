@@ -20,7 +20,7 @@ namespace Store_Backend.Infraestructure.Rest
         [Produces("application/json")]
         public ActionResult<IEnumerable<CategoryDto>> GetCategories()
         {
-            var categories = _categoryService.GetAllCategories();
+            var categories = _categoryService.GetAll();
             return Ok(categories);
         }
 
@@ -28,7 +28,7 @@ namespace Store_Backend.Infraestructure.Rest
         [Produces("application/json")]
         public ActionResult<CategoryDto> GetCategory(long id) {
             try {
-                CategoryDto categoryDto = _categoryService.GetCategory(id);
+                CategoryDto categoryDto = _categoryService.Get(id);
                 return Ok(categoryDto);
             } catch (ElementNotFoundException) {
                 return NotFound();
@@ -40,8 +40,8 @@ namespace Store_Backend.Infraestructure.Rest
         [Consumes("application/json")]
         public ActionResult<CategoryDto> InsertCategory(CategoryDto categoryDto) {
             if (categoryDto == null) return BadRequest();
-            categoryDto = _categoryService.InsertCategory(categoryDto);
-            return CreatedAtAction(nameof(InsertCategory), new {id = categoryDto.Id}, categoryDto);
+            categoryDto = _categoryService.Insert(categoryDto);
+            return CreatedAtAction(nameof(GetCategory), new {id = categoryDto.Id}, categoryDto);
         }
 
         [HttpPut]
@@ -50,7 +50,7 @@ namespace Store_Backend.Infraestructure.Rest
         public ActionResult<CategoryDto> UpdateCategory(CategoryDto categoryDto)
         {
             if (categoryDto == null) return BadRequest();
-            categoryDto = _categoryService.UpdateCategory(categoryDto);
+            categoryDto = _categoryService.Update(categoryDto);
             return Ok(categoryDto);
         }
 
@@ -59,7 +59,7 @@ namespace Store_Backend.Infraestructure.Rest
         {
             try
             {
-                _categoryService.DeteteCategory(id);
+                _categoryService.Detete(id);
                 return NoContent();
             }
             catch (ElementNotFoundException)
