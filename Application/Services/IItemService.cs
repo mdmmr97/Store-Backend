@@ -2,7 +2,8 @@
 
 namespace Store_Backend.Application.Services
 {
-    public interface IItemService:IGenericService<ItemDto>
+    public interface IItemService : IGenericService<ItemDto>
     {
+        List<ItemDto> GetAllByCategoryId(long categoryId);
     }
 }

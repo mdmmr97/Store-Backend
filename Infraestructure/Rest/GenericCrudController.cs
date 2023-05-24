@@ -14,7 +14,7 @@ namespace Store_Backend.Infraestructure.Rest
 
         [HttpGet]
         [Produces("application/json")]
-        public ActionResult<IEnumerable<D>> Get()
+        public virtual ActionResult<IEnumerable<D>> Get()
         {
             var dto = _service.GetAll();
             return Ok(dto);
@@ -22,7 +22,7 @@ namespace Store_Backend.Infraestructure.Rest
 
         [HttpGet("{id}")]
         [Produces("application/json")]
-        public ActionResult<D> Get(long id)
+        public virtual ActionResult<D> Get(long id)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Store_Backend.Infraestructure.Rest
         [HttpPost]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public ActionResult<D> Insert(D dto)
+        public virtual ActionResult<D> Insert(D dto)
         {
             if (dto == null) return BadRequest();
             dto = _service.Insert(dto);
@@ -48,7 +48,7 @@ namespace Store_Backend.Infraestructure.Rest
         [HttpPut]
         [Produces("application/json")]
         [Consumes("application/json")]
-        public ActionResult<D> Update(D dto)
+        public virtual ActionResult<D> Update(D dto)
         {
             if (dto == null) return BadRequest();
             dto = _service.Update(dto);
@@ -56,7 +56,7 @@ namespace Store_Backend.Infraestructure.Rest
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<D> Detete(long id)
+        public virtual ActionResult<D> Detete(long id)
         {
             try
             {
