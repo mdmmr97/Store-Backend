@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Store_Backend.Application.Mappings;
 using Store_Backend.Application.Services;
@@ -27,6 +28,7 @@ if (builder.Environment.IsDevelopment()) {
 }
 
 var app = builder.Build();
+ConfigureExceptionHandler(app);
 
 if (builder.Environment.IsDevelopment()) {
     using var scope = app.Services.CreateScope();
@@ -48,3 +50,26 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static void ConfigureExceptionHandler(WebApplication app)
+{
+    app.UseExceptionHandler(errorApp => {
+        errorApp.Run(async context =>
+        {
+            IExceptionHandlerPathFeature? exceptionHandlerPathFeature =
+                context.Features.Get<IExceptionHandlerPathFeature>();
+            var logger = app.Services.GetRequiredService<ILogger<Program>>();
+            if (exceptionHandlerPathFeature?.Error != null)
+            {
+                logger.LogError(exceptionHandlerPathFeature.Error, "An unhandled exception ocurred while processing the request.");
+            }
+            else
+            {
+                logger.LogError("An unhandled exception ocurred while processing the request.");
+
+            }
+            context.Response.StatusCode = 500;
+            await context.Response.WriteAsync("An error ocurred while processing the request.");
+        });
+    });
+}
