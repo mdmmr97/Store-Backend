@@ -56,11 +56,11 @@ namespace Store_Backend.Infraestructure.Rest
         }
 
         [HttpDelete("{id}")]
-        public virtual ActionResult<D> Detete(long id)
+        public virtual ActionResult<D> Delete(long id)
         {
             try
             {
-                _service.Detete(id);
+                _service.Delete(id);
                 return NoContent();
             }
             catch (ElementNotFoundException)

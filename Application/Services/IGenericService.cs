@@ -6,6 +6,6 @@
         D Get(long id);
         D Insert(D dto);
         D Update(D dto);
-        void Detete(long id);
+        void Delete(long id);
     }
 }

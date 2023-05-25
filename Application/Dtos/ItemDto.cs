@@ -8,6 +8,6 @@
         public double? Price { get; set; }
         public byte[] Image { get; set; }
         public long CategoryId { get; set; }
-        public long CategoryName { get; set; }
+        public string CategoryName { get; set; }
     }
 }

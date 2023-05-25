@@ -7,9 +7,11 @@ namespace Store_Backend.Application.Services
 {
     public class CategoryService : GenericService<Category, CategoryDto>, ICategoryService
     {
+        private ICategoryRepository _categoryRepostory;
 
         public CategoryService(ICategoryRepository categoryRepository, IMapper mapper): base(categoryRepository, mapper)
         {
+            _categoryRepostory = categoryRepository;
         }
     }
 }

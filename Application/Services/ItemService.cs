@@ -7,13 +7,17 @@ namespace Store_Backend.Application.Services
 {
     public class ItemService : GenericService<Item, ItemDto>, IItemService
     {
+        private IItemRepository _itemRepository;
+
         public ItemService(IItemRepository repository, IMapper mapper) : base(repository, mapper)
-        {}
+        {
+            _itemRepository = repository;
+        }
 
         public List<ItemDto> GetAllByCategoryId(long categoryId)
         {
-            var items = ((IItemRepository)_repository).GetByCategoryId(categoryId);
-            return _mapper.Map<List<ItemDto>>(items);
+            var items = _itemRepository.GetByCategoryId(categoryId);
+            return items;
         }
     }
 }
