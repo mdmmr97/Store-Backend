@@ -2,14 +2,17 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Store_Backend.Application.Mappings;
 using Store_Backend.Application.Services;
+using Store_Backend.Domain.Entities;
 using Store_Backend.Domain.Persistence;
 using Store_Backend.Infraestructure.Persistence;
+using Store_Backend.Infraestructure.Specs;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped(typeof(ISpecificationParser<>), typeof(SpecificationParser<>));
 builder.Services.AddAutoMapper(typeof(CategoryMapperProfile));
 builder.Services.AddAutoMapper(typeof(ItemMapperProfile));
 

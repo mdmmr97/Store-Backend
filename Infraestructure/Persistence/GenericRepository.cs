@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Store_Backend.Domain.Entities;
 using Store_Backend.Domain.Persistence;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Store_Backend.Infraestructure.Persistence
 {
@@ -47,6 +49,39 @@ namespace Store_Backend.Infraestructure.Persistence
             if ( entity == null ) throw new ElementNotFoundException();
             _dbSet.Remove(entity);
             _context.SaveChanges();
+        }
+
+        protected virtual IQueryable<T> ApplySortOrder(IQueryable<T> entities, string sortOrder)
+        {
+            var orderByParameters = sortOrder.Split(',');
+            var orderByAttribute = Char.ToUpper(orderByParameters[0][0]) + orderByParameters[0][1..];
+            var orderbyDirection = orderByParameters.Length > 1 ? orderByParameters[1] : "asc";
+
+            var propertyInfo = typeof(T).GetProperty(orderByAttribute, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+
+            if (propertyInfo != null )
+            {
+                var parameter = Expression.Parameter(typeof(Item), "x");
+                var property = Expression.Property(parameter, propertyInfo);
+
+                if (propertyInfo.PropertyType.IsValueType)
+                {
+                    var orderByExpression = Expression.Lambda<Func<T, dynamic>>(Expression.Convert(property, typeof(object)), parameter);
+
+                    entities = orderbyDirection.Equals("asc", StringComparison.OrdinalIgnoreCase)
+                        ? entities.OrderBy(orderByExpression)
+                        : entities.OrderByDescending(orderByExpression);
+                }
+                else
+                {
+                    var orderByExpression = Expression.Lambda<Func<T, object>>(property, parameter);
+
+                    entities = orderbyDirection.Equals("asc", StringComparison.OrdinalIgnoreCase)
+                        ? entities.OrderBy(orderByExpression)
+                        : entities.OrderByDescending(orderByExpression);
+                }
+            }
+            return entities;
         }
     }
 }

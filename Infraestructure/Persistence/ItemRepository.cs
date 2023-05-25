@@ -1,17 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Store_Backend.Application;
 using Store_Backend.Application.Dtos;
 using Store_Backend.Domain.Entities;
 using Store_Backend.Domain.Persistence;
+using Store_Backend.Infraestructure.Specs;
 
 namespace Store_Backend.Infraestructure.Persistence
 {
     public class ItemRepository : GenericRepository<Item>, IItemRepository
     {
         private StoreContext _storeContext;
+        private readonly ISpecificationParser<Item> _specificationParser;
 
-        public ItemRepository(StoreContext storeContext) : base(storeContext)
+        public ItemRepository(StoreContext storeContext, ISpecificationParser<Item> specificationParser) : base(storeContext)
         {
             _storeContext = storeContext;
+            _specificationParser = specificationParser;
         }
 
         public virtual Item GetById(long id)
@@ -53,6 +57,22 @@ namespace Store_Backend.Infraestructure.Persistence
             _storeContext.SaveChanges();
             _storeContext.Entry(item).Reference(i => i.Category).Load();
             return item;
+        }
+
+        public PagedList<Item> GetItemsByCriteriaPaged(string? filter, PaginationParameters paginationParameters)
+        {
+            var items = _storeContext.Items.Include(i => i.Category).AsQueryable();
+            if (!string.IsNullOrEmpty(filter))
+            {
+                Specification<Item> specification = _specificationParser.ParseSpecification(filter);
+                items = specification.ApplySpecification(items);
+            }
+             
+            if (!string.IsNullOrEmpty(paginationParameters.Sort))
+            {
+                items = ApplySortOrder(items, paginationParameters.Sort); 
+            }
+            return PagedList<Item>.ToPagedList(items, paginationParameters.PageNumber, paginationParameters.PageSize);
         }
     }
 }
