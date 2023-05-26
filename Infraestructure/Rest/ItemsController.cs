@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿ using Microsoft.AspNetCore.Mvc;
 using Store_Backend.Application;
 using Store_Backend.Application.Dtos;
 using Store_Backend.Application.Services;
+using Store_Backend.Domain.Services;
 
 namespace Store_Backend.Infraestructure.Rest
 {
@@ -9,11 +10,13 @@ namespace Store_Backend.Infraestructure.Rest
     [ApiController]
     public class ItemsController : GenericCrudController<ItemDto>
     {
+        private readonly ILogger<CategoriesController> _logger;
         private IItemService _itemService;
 
-        public ItemsController(IItemService itemService) : base(itemService)
+        public ItemsController(IItemService itemService, ILogger<CategoriesController> logger) : base(itemService)
         {
             _itemService = itemService;
+            _logger = logger;
         }
 
         [NonAction]
@@ -51,6 +54,31 @@ namespace Store_Backend.Infraestructure.Rest
         {
             var itemsDto = ((IItemService)_service).GetAllByCategoryId(categoryId);
             return Ok(itemsDto);
+        }
+
+        public override ActionResult<ItemDto> Insert(ItemDto dto)
+        {
+            try
+            {
+                return base.Insert(dto);
+            }
+            catch (InvalidImageException)
+            {
+                _logger.LogInformation("Invalid image inserting item with {dto.Name} name", dto.Name);
+                return BadRequest();
+            }
+        }
+        public override ActionResult<ItemDto> Update(ItemDto dto)
+        {
+            try
+            {
+                return base.Update(dto);
+            }
+            catch (InvalidImageException)
+            {
+                _logger.LogInformation("Invalid image updating item with {dto.Id} name", dto.Id);
+                return BadRequest();
+            }
         }
     }
 }
