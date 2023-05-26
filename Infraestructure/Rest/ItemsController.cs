@@ -7,11 +7,11 @@ namespace Store_Backend.Infraestructure.Rest
 {
     [Route("store/[controller]")]
     [ApiController]
-    public class ItemController : GenericCrudController<ItemDto>
+    public class ItemsController : GenericCrudController<ItemDto>
     {
         private IItemService _itemService;
 
-        public ItemController(IItemService itemService) : base(itemService)
+        public ItemsController(IItemService itemService) : base(itemService)
         {
             _itemService = itemService;
         }

@@ -23,7 +23,7 @@ namespace Store_Backend.Application.Services
         public PagedList<ItemDto> GetItemsByCriteriaPaged(string? filter, PaginationParameters paginationParameters)
         {
             var items = _itemRepository.GetItemsByCriteriaPaged(filter, paginationParameters);
-            return _mapper.Map<PagedList<ItemDto>>(items);
+            return items;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace Store_Backend.Domain.Persistence
     public interface IItemRepository : IGenericRepository<Item>
     {
         List<ItemDto> GetByCategoryId(long categoryId);
-        PagedList<Item> GetItemsByCriteriaPaged(string? filter, PaginationParameters paginationParameters);
+        PagedList<ItemDto> GetItemsByCriteriaPaged(string? filter, PaginationParameters paginationParameters);
     }
 }
