@@ -8,13 +8,16 @@ namespace Store_Backend.Application.Services
 {
     public class ItemService : GenericService<Item, ItemDto>, IItemService
     {
-        private IItemRepository _itemRepository;
+        private readonly IItemRepository _itemRepository;
         private readonly IImageVerifier _imageVerifier;
+        private readonly IStoreUnitOfWork _storeUnitOfWork;
 
-        public ItemService(IItemRepository repository, IMapper mapper, IImageVerifier imageVerifier) : base(repository, mapper)
+
+        public ItemService(IItemRepository repository, IMapper mapper, IStoreUnitOfWork storeUnitOfWork, IImageVerifier imageVerifier) : base(repository, mapper)
         {
             _itemRepository = repository;
             _imageVerifier = imageVerifier;
+            _storeUnitOfWork = storeUnitOfWork;
         }
 
         public List<ItemDto> GetAllByCategoryId(long categoryId)
@@ -35,10 +38,27 @@ namespace Store_Backend.Application.Services
             return base.Insert(dto);
         }
 
+        public List<ItemDto> postNewItemsFromCategory(long categoryId, List<ItemDto> items)
+        {
+            List<ItemDto> newItems = new List<ItemDto>();
+            using (IWork work = _storeUnitOfWork.Init())
+            {
+                foreach (var item in items)
+                {
+                    item.CategoryId = categoryId;
+                    newItems.Add(Insert(item));
+                }
+                work.Complete();
+                return newItems;
+            }
+            
+        }
+
         public override ItemDto Update(ItemDto dto)
         {
             if (!_imageVerifier.IsImage(dto.Image)) throw new InvalidImageException();
             return base.Update(dto);
         }
+
     }
 }

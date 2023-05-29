@@ -17,6 +17,7 @@ namespace Store_Backend.Infraestructure.Persistence
             {
                 LoadCategories();
             }
+            storeContext.SaveChanges();
 
             if (!storeContext.Items.Any())
             {

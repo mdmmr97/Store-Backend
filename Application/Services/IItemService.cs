@@ -6,5 +6,6 @@ namespace Store_Backend.Application.Services
     {
         List<ItemDto> GetAllByCategoryId(long categoryId);
         PagedList<ItemDto> GetItemsByCriteriaPaged(string? filter, PaginationParameters paginationParameters);
+        List<ItemDto> postNewItemsFromCategory(long categoryId, List<ItemDto> items);
     }
 }
